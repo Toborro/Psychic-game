@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hangman</title>
+
+  <!-- Bootstrap -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+</head>
+<body>
+
+<div id="wrap">
+
+  <div id="modal">
+    <div id="state" class="container text-centered">
+      <img src="./assets/images/title.png" alt="hangman 2 title">
+      <div class="instructions">
+        <p>Guess the word!!</p>
+        <p>Hit <strong>spacebar</strong> to start.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="win" class="hide">
+    <div class="message">
+      <div id="copper"><img src="./assets/images/cop.png" alt="cop"></div>
+      <div class="text">
+        <p>Nice! You guessed <span id="wordSolved">"LONGWORD"</span> with <span id="turnsLeft">0</span> turns to spare.</p>
+        <p>Hit <strong>spacebar</strong> to keep playing.</p>
+      </div>
+    </div>
+  </div> <!-- scrim -->
+
+  <div id="lose" class="hide">
+    <div class="message">
+      <div class="text">
+        <p>You lody</p>
+        <div><img src="./assets/images/explosion.gif" alt="explosion"></div>
+        <p>Hit <strong>spacebar</strong> to try again.</p>
+      </div>
+    </div>
+  </div> <!-- scrim -->
+
+  <div id="items">
+    <div id="briefcase">
+      <img src="./assets/images/briefcase.png" alt="briefcase">
+    </div>
+
+    <div id="gun">
+      <img src="./assets/images/gun.png" alt="gun">
+    </div>
+
+    <div id="badge">
+      <img src="./assets/images/badge.png" alt="badge">
+    </div>
+
+    <div id="turns-ghost">00:00</div>
+    <div id="turns"></div>
+
+    <div id="guess">
+      <table id="word" class="table-bordered text-primary">
+        <tr id="blanks">
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="error" class="hide"></div>
+
+    <div id="guess-ghost">
+      <table id="word-ghost" class="table-bordered text-primary">
+        <tr>
+          <td>_</td>
+          <td>_</td>
+          <td>_</td>
+          <td>_</td>
+          <td>_</td>
+          <td>_</td>
+          <td>_</td>
+          <td>_</td>
+          <td>_</td>
+          <td>_</td>
+          <td>_</td>
+          <td>_</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="guessed"></div>
+    <div id="wins"></div>
+
+  </div> <!-- items -->
+
+
+
+</div> <!-- wrap -->
+
+<!-- JS -->
+<script src="./assets/javascript/game.js" charset="utf-8"></script>
+
+</body>
+</html>
