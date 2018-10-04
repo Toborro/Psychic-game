@@ -1,108 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hangman</title>
+	<title>Psyhic Game</title>
+<!-- Latest compiled and minified CSS -->
 
-  <!-- Bootstrap -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
-
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/css/style.css" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+<link type="text/javascript" src="assets/javascript/game.js">
 
 </head>
-<body>
 
+
+
+ 	 <div class="header-container">
+             	<h3 class="title-text" style="color: #ffffff"> TEST YOUR PSYCHIC POWERS </h3>
+     </div> <!-- end of header tag-->
+
+<body id="body" class="clearfix"> 
+<script src="assets/javascript/game.js"> 
+
+var alphabet=['a','b'];
+// var alphabet=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var numGuess=  15;  //number of guesses
+var userGuessed=[]; //letters user guessed
+var loseCounter=[0]; 
+var winCounter=[0]; 
+// var losses=loseCounter;
+// var wins=winCounter;
+var amountOfGuess=numGuess;
+
+
+
+// Randomizes the global alphabet bank
+function randomizer (alphabet) {
+	return alphabet[Math.floor(Math.random()* alphabet.length)];
+}
+
+//function that initiallizes randomize alphabet bank and true/false.
+document.onkeyup = function(event) {
+
+	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+	var computerGuess=randomizer(alphabet);
+		
+	if (userGuess== computerGuess) {
+		console.log("correct", userGuessed);
+		document.getElementById("winCounter").innerHTML= (winCounter.length);
+		userGuessed.push(userGuess);
+		document.getElementById("userGuessed").innerHTML=(userGuessed);
+		(winCounter+=1);
+
+		// document.getElementById("userGuessed").innerHTML=(userGuessed.length);
+		
+	} else {
+		console.log("no", numGuess, userGuessed);
+		document.getElementById("loseCounter").innerHTML= (loseCounter.length);
+		userGuessed.push(userGuess);
+		document.getElementById("userGuessed").innerHTML=(userGuessed);
+		numGuess--;
+		// (loseCounter+=1);
+		document.getElementById("numGuess").innerHTML=(numGuess);
+		// document.getElementById("userGuessed").innerHTML=(userGuessed.indexOf);
+		
+	}
+	if (numGuess===0 ) {
+		// reset.resetGame()
+		alert("You lose!");
+		reset.resetGame();
+		loseCounter+=1;
+		userGuessed=[];
+
+	
+	};
+}
+
+
+var reset = {
+	resetGame: function() {
+		if(numGuess==0) {
+			document.onekeyup=false;
+			numGuess=15;
+			userGuessed=[];
+		}
+	}
+}
+
+
+</script>
 <div id="wrap">
+		<div class="container"> 
+			<div class="row">
+				<div class="col-lg-8"> 
+					<h1 class="title-psychicGame">Psychic Game</h1>
 
-  <div id="modal">
-    <div id="state" class="container text-centered">
-      <img src="./assets/images/title.png" alt="hangman 2 title">
-      <div class="instructions">
-        <p>Guess the word!!</p>
-        <p>Hit <strong>spacebar</strong> to start.</p>
-      </div>
-    </div>
-  </div>
+				<div class="row">
+					<div class="col-lg-8">
+						<h2 class="wins premade">Wins:</h2>
+						<h3 id="winCounter" class="scorecolor"></h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-8">
+						<h2 class="losses premade">Losses:</h2>
+						<h3 id="loseCounter" class="scorecolor"></h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-8">
+						<h2 class="guesses premade">Guesses Left:</h2>
+						<h3 id="numGuess" class="scorecolor"></h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-8">
+						<h2 class="lettersNow premade">Letters guessed so far:</h2>
+						<h3 id="userGuessed" class="scorecolor"></h3>
+					</div>
+				</div>
+			</div>
 
-  <div id="win" class="hide">
-    <div class="message">
-      <div id="copper"><img src="./assets/images/cop.png" alt="cop"></div>
-      <div class="text">
-        <p>Nice! You guessed <span id="wordSolved">"LONGWORD"</span> with <span id="turnsLeft">0</span> turns to spare.</p>
-        <p>Hit <strong>spacebar</strong> to keep playing.</p>
-      </div>
-    </div>
-  </div> <!-- scrim -->
+					<div class="col-lg-4">
+        		    
+         				      <h3 class="paneltitle">How to Play</h3>
+         		         </div>
+         		     	<div class="row">
+         		     		
+         		     			<p class="howtoplay	"> Use your keyboard to guess the letters from A-Z! each letter you correctly guess will increment your wins by 1 and will not deduct any points from you. once you have used up all your guesses, you lose!</p>
+         		     		
+         		     	</div>
+         		     </div>
+         		   </div>
+      
+			</div>
+		</div>
 
-  <div id="lose" class="hide">
-    <div class="message">
-      <div class="text">
-        <p>You lody</p>
-        <div><img src="./assets/images/explosion.gif" alt="explosion"></div>
-        <p>Hit <strong>spacebar</strong> to try again.</p>
-      </div>
-    </div>
-  </div> <!-- scrim -->
-
-  <div id="items">
-    <div id="briefcase">
-      <img src="./assets/images/briefcase.png" alt="briefcase">
-    </div>
-
-    <div id="gun">
-      <img src="./assets/images/gun.png" alt="gun">
-    </div>
-
-    <div id="badge">
-      <img src="./assets/images/badge.png" alt="badge">
-    </div>
-
-    <div id="turns-ghost">00:00</div>
-    <div id="turns"></div>
-
-    <div id="guess">
-      <table id="word" class="table-bordered text-primary">
-        <tr id="blanks">
-          <td>&nbsp;</td>
-        </tr>
-      </table>
-    </div>
-
-    <div id="error" class="hide"></div>
-
-    <div id="guess-ghost">
-      <table id="word-ghost" class="table-bordered text-primary">
-        <tr>
-          <td>_</td>
-          <td>_</td>
-          <td>_</td>
-          <td>_</td>
-          <td>_</td>
-          <td>_</td>
-          <td>_</td>
-          <td>_</td>
-          <td>_</td>
-          <td>_</td>
-          <td>_</td>
-          <td>_</td>
-        </tr>
-      </table>
-    </div>
-
-    <div id="guessed"></div>
-    <div id="wins"></div>
-
-  </div> <!-- items -->
+	
+ 	
 
 
 
-</div> <!-- wrap -->
 
-<!-- JS -->
-<script src="./assets/javascript/game.js" charset="utf-8"></script>
+		  <div class="footer">
+            <p class="footer-text">Copyright (c) 2018 Zachary Taylor</p>
+         </div>
+</div>
 
 </body>
+	 
+			
+		
+
 </html>
